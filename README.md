@@ -1,105 +1,139 @@
-<div align="center">
+# jekyll-theme-leaf
 
-  # Chirpy Jekyll Theme
+👇👇
 
-  A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
+[Preview Theme](https://supunkavinda.github.io/jekyll-theme-leaf/) 
 
-  [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy?color=brightgreen)](https://rubygems.org/gems/jekyll-theme-chirpy)
-  [![Build Status](https://github.com/cotes2020/jekyll-theme-chirpy/workflows/build/badge.svg?branch=master&event=push)](https://github.com/cotes2020/jekyll-theme-chirpy/actions?query=branch%3Amaster+event%3Apush)
-  [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4e556876a3c54d5e8f2d2857c4f43894)](https://www.codacy.com/gh/cotes2020/jekyll-theme-chirpy/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cotes2020/jekyll-theme-chirpy&amp;utm_campaign=Badge_Grade)
-  [![GitHub license](https://img.shields.io/github/license/cotes2020/jekyll-theme-chirpy.svg)](https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE)
-  [![996.icu](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg)](https://996.icu)
+Jekyll Theme Leaf is a very simple yet beautiful theme created by [Supun Kavinda](https://twitter.com/_SupunKavinda). It is designed for those who love dark sites.
 
-  [**Live Demo →**](https://cotes2020.github.io/chirpy-demo)
+![Screenshot](https://i.imgur.com/fBiCIuL.png)
 
-  [![Devices Mockup](https://raw.githubusercontent.com/cotes2020/chirpy-images/main/commons/devices-mockup.png)](https://cotes2020.github.io/chirpy-demo)
+## Installation
 
-</div>
+Add this line to your Jekyll site's `Gemfile`:
 
-## Features
-
-- Localized Layout
-- Dark/Light Theme Mode
-- Pinned Posts
-- Hierarchical Categories
-- Last Modified Date for Posts
-- Table of Contents
-- Auto-generated Related Posts
-- Syntax Highlighting
-- Mathematical Expressions
-- Mermaid Diagram & Flowchart
-- Disqus/Utterances/Giscus Comments
-- Search
-- Atom Feeds
-- Google Analytics
-- GA Pageviews Reporting
-- SEO & Performance Optimization
-
-
-## Quick Start
-
-Before starting, please follow the instructions in the [Jekyll Docs](https://jekyllrb.com/docs/installation/) to complete the installation of `Ruby`, `RubyGems`, `Jekyll`, and `Bundler`. In addition, [Git](https://git-scm.com/) is also required to be installed.
-
-### Step 1. Creating a New Site
-
-Create a new repository from the [**Chirpy Starter**](https://github.com/cotes2020/chirpy-starter/generate) and name it `<GH_USERNAME>.github.io`, where `GH_USERNAME` represents your GitHub username.
-
-### Step 2. Installing Dependencies
-
-Before running for the first time, go to the root directory of your site, and install dependencies as follows:
-
-```console
-$ bundle
+```ruby
+gem "jekyll-theme-leaf"
 ```
 
-### Step 3. Running Local Server
+And add this line to your Jekyll site's `_config.yml`:
 
-Run the following command in the root directory of the site:
-
-```console
-$ bundle exec jekyll s
+```yaml
+theme: jekyll-theme-leaf
 ```
 
-Or run with Docker:
+And then execute:
 
-```console
-$ docker run -it --rm \
-    --volume="$PWD:/srv/jekyll" \
-    -p 4000:4000 jekyll/jekyll \
-    jekyll serve
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install jekyll-theme-leaf
+
+## Usage
+
+### Layouts
+
+Refers to files within the `_layouts` directory, that define the markup for your theme.
+
+* `default.html` - The base markup of all other layouts.
+* `home.html` - Home or index page layout.
+* `page.html` - Page layout (These are not listed as posts).
+* `posts.html` - Posts layout. These are listed in the home directory.
+
+### Includes
+
+These are the files within the `_includes` directory.
+
+* `footer.html` - Markup for the footer. It's a minimal footer with the site title and twitter and github links.
+* `google-analytics.html` - Contains the [Google Analytics](https://analytics.google.com/analytics/web/) code.
+* `head.html` - Contains the HTML code for the `<head>`.
+* `header.html` - The header/top navigation bar of the site.
+* `hyvor-talk-comments.html` - [Hyvor Talk](https://talk.hyvor.com) installation code with a customized color palette.
+
+### Sass
+
+* `leaf.scss` - The main SCSS file. Contains several variables and mixins.
+* `_base.scss` - Primary styles
+* `_highlight-dark.scss` - Code highlighting
+* `_layout.scss` - Layout SCSS files
+    * `_layout_header.scss` - Styles of the header (`_includes/header.html`)
+    * `_layout_home.scss` - Styles of the home (`_layouts/home.html`)
+    * `_layout-post.scss` - Styles of the post and page layouts (`_layouts/posts.html`, `_layouts/page.html`)
+
+### Assets
+
+* `assets/css/style.css` - Imports `_sass/leaf.scss`.
+* `assets/default-icon.png` - The leaf icon.
+
+### Plugins
+
+Leaf Jekyll theme uses two plugins by default.
+
+* `jekyll-seo-tag` - For better SEO
+* `jekyll-feed` - For RSS feed
+
+## Configuration
+
+Here's the basic `_config.yml` file of this plugin.
+
+```yaml
+title: Leaf Blog
+iconURL: assets/default-icon.png
+theme: jekyll-theme-leaf
+
+permalink: :slug
+
+social:
+  twitter: YOUR_TWITTER
+  github: YOUR_GITHUB
+
+plugins:
+ - jekyll-feed
+ - jekyll-seo-tag
+
+### comments & analytics
+hyvor_talk_website_id: YOUR_WEBSITE_ID
+google_analytics: UA-NNNNNNNN-N
 ```
 
-After a while, navigate to the site at <http://localhost:4000>.
+### Adding Comments
 
-## Documentation
+The Leaf Jekyll theme uses [Hyvor Talk](https://talk.hyvor.com) comments. The colors are customized based for the theme therefore you don't need to customize colors in the console.
 
-For more details on usage, please refer to the tutorial on the [demo website](https://cotes2020.github.io/chirpy-demo/) / [wiki](https://github.com/cotes2020/jekyll-theme-chirpy/wiki). Note that the tutorial is based on the [latest tag](https://github.com/cotes2020/jekyll-theme-chirpy/tags), and the features of the default branch are usually ahead of the documentation.
+* First, [login to the Hyvor Talk console](https://talk.hyvor.com/console)
+* Register your website
+* Get your website ID from the **General** section of the console.
+* Then, replace `YOUR_WEBSITE_ID` in the above code in `_config.yml` with your code.
+
+Ex: 
+
+```yaml
+hyvor_talk_website_id: 14
+```
+
+### Adding Google Analytics
+
+* Sign up to [Google Analytics](https://analytics.google.com)
+* Add your website and get the tracking ID.
+* Replace `UA-NNNNNNNN-N` with your tracking ID.
+
+Google Analytics will only appear in production.
 
 ## Contributing
 
-Welcome to report bugs, improve code quality or submit a new feature. For more information, see [contributing guidelines](.github/CONTRIBUTING.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/SupunKavinda/jekyll-theme-leaf. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-## Credits
+## Development
 
-This theme is mainly built with [Jekyll](https://jekyllrb.com/) ecosystem, [Bootstrap](https://getbootstrap.com/), [Font Awesome](https://fontawesome.com/) and some other wonderful tools (their copyright information can be found in the relevant files). The avatar and favicon design come from [Clipart Max](https://www.clipartmax.com/middle/m2i8b1m2K9Z5m2K9_ant-clipart-childrens-ant-cute/).
+To set up your environment to develop this theme, run `bundle install`.
 
-:tada: Thanks to all the volunteers who contributed to this project, their GitHub IDs are on [this list](https://github.com/cotes2020/jekyll-theme-chirpy/graphs/contributors). Also, I won't forget those guys who submitted the issues or unmerged PR because they reported bugs, shared ideas, or inspired me to write more readable documentation.
+Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
 
-Last but not least, thank [JetBrains][jb] for providing the OSS development license.
-
-## Sponsoring
-
-If you like this theme or find it helpful, please consider sponsoring me, because it will encourage and help me better maintain the project, I will be very grateful!
-
-[![Ko-fi](https://img.shields.io/badge/-Buy%20Me%20a%20Coffee-ff5f5f?logo=ko-fi&logoColor=white)](https://ko-fi.com/coteschung)
-[![Wechat Pay](https://img.shields.io/badge/-Tip%20Me%20on%20WeChat-brightgreen?logo=wechat&logoColor=white)][cn-donation]
-[![Alipay](https://img.shields.io/badge/-Tip%20Me%20on%20Alipay-blue?logo=alipay&logoColor=white)][cn-donation]
+When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
+To add a custom directory to your theme-gem, please edit the regexp in `leaf.gemspec` accordingly.
 
 ## License
 
-This work is published under [MIT](https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE) License.
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-<!-- ReadMe links -->
-
-[jb]: https://www.jetbrains.com/?from=jekyll-theme-chirpy
-[cn-donation]: https://cotes.gitee.io/alipay-wechat-donation/
