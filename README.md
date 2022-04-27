@@ -1,139 +1,116 @@
-# jekyll-theme-leaf
+# The Hacker theme
 
-👇👇
+[![.github/workflows/ci.yaml](https://github.com/pages-themes/hacker/actions/workflows/ci.yaml/badge.svg)](https://github.com/pages-themes/hacker/actions/workflows/ci.yaml) [![Gem Version](https://badge.fury.io/rb/jekyll-theme-hacker.svg)](https://badge.fury.io/rb/jekyll-theme-hacker)
 
-[Preview Theme](https://supunkavinda.github.io/jekyll-theme-leaf/) 
+*Hacker is a Jekyll theme for GitHub Pages. You can [preview the theme to see what it looks like](http://pages-themes.github.io/hacker), or even [use it today](#usage).*
 
-Jekyll Theme Leaf is a very simple yet beautiful theme created by [Supun Kavinda](https://twitter.com/_SupunKavinda). It is designed for those who love dark sites.
-
-![Screenshot](https://i.imgur.com/fBiCIuL.png)
-
-## Installation
-
-Add this line to your Jekyll site's `Gemfile`:
-
-```ruby
-gem "jekyll-theme-leaf"
-```
-
-And add this line to your Jekyll site's `_config.yml`:
-
-```yaml
-theme: jekyll-theme-leaf
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install jekyll-theme-leaf
+![Thumbnail of Hacker](thumbnail.png)
 
 ## Usage
 
+To use the Hacker theme:
+
+1. Add the following to your site's `_config.yml`:
+
+    ```yml
+    remote_theme: pages-themes/hacker@v0.2.0
+    plugins:
+    - jekyll-remote-theme # add this line to the plugins list if you already have one
+    ```
+
+2. Optionally, if you'd like to preview your site on your computer, add the following to your site's `Gemfile`:
+
+    ```ruby
+    gem "github-pages", group: :jekyll_plugins
+    ```
+
+## Customizing
+
+### Configuration variables
+
+Hacker will respect the following variables, if set in your site's `_config.yml`:
+
+```yml
+title: [The title of your site]
+description: [A short description of your site's purpose]
+```
+
+Additionally, you may choose to set the following optional variables:
+
+```yml
+show_downloads: ["true" or "false" (unquoted) to indicate whether to provide a download URL]
+google_analytics: [Your Google Analytics tracking ID]
+```
+
+### Stylesheet
+
+If you'd like to add your own custom styles:
+
+1. Create a file called `/assets/css/style.scss` in your site
+2. Add the following content to the top of the file, exactly as shown:
+    ```scss
+    ---
+    ---
+
+    @import "{{ site.theme }}";
+    ```
+3. Add any custom CSS (or Sass, including imports) you'd like immediately after the `@import` line
+
+*Note: If you'd like to change the theme's Sass variables, you must set new values before the `@import` line in your stylesheet.*
+
 ### Layouts
 
-Refers to files within the `_layouts` directory, that define the markup for your theme.
+If you'd like to change the theme's HTML layout:
 
-* `default.html` - The base markup of all other layouts.
-* `home.html` - Home or index page layout.
-* `page.html` - Page layout (These are not listed as posts).
-* `posts.html` - Posts layout. These are listed in the home directory.
+1. For some changes such as a custom `favicon`, you can add custom files in your local `_includes` folder. The files [provided with the theme](https://github.com/pages-themes/hacker/tree/master/_includes) provide a starting point and are included by the [original layout template](https://github.com/pages-themes/hacker/blob/master/_layouts/default.html).
+2. For more extensive changes, [copy the original template](https://github.com/pages-themes/hacker/blob/master/_layouts/default.html) from the theme's repository<br />(*Pro-tip: click "raw" to make copying easier*)
+3. Create a file called `/_layouts/default.html` in your site
+4. Paste the default layout content copied in the first step
+5. Customize the layout as you'd like
 
-### Includes
+### Customizing Google Analytics code
 
-These are the files within the `_includes` directory.
+Google has released several iterations to their Google Analytics code over the years since this theme was first created. If you would like to take advantage of the latest code, paste it into `_includes/head-custom-google-analytics.html` in your Jekyll site.
 
-* `footer.html` - Markup for the footer. It's a minimal footer with the site title and twitter and github links.
-* `google-analytics.html` - Contains the [Google Analytics](https://analytics.google.com/analytics/web/) code.
-* `head.html` - Contains the HTML code for the `<head>`.
-* `header.html` - The header/top navigation bar of the site.
-* `hyvor-talk-comments.html` - [Hyvor Talk](https://talk.hyvor.com) installation code with a customized color palette.
+### Overriding GitHub-generated URLs
 
-### Sass
+Templates often rely on URLs supplied by GitHub such as links to your repository or links to download your project. If you'd like to override one or more default URLs:
 
-* `leaf.scss` - The main SCSS file. Contains several variables and mixins.
-* `_base.scss` - Primary styles
-* `_highlight-dark.scss` - Code highlighting
-* `_layout.scss` - Layout SCSS files
-    * `_layout_header.scss` - Styles of the header (`_includes/header.html`)
-    * `_layout_home.scss` - Styles of the home (`_layouts/home.html`)
-    * `_layout-post.scss` - Styles of the post and page layouts (`_layouts/posts.html`, `_layouts/page.html`)
+1. Look at [the template source](https://github.com/pages-themes/hacker/blob/master/_layouts/default.html) to determine the name of the variable. It will be in the form of `{{ site.github.zip_url }}`.
+2. Specify the URL that you'd like the template to use in your site's `_config.yml`. For example, if the variable was `site.github.url`, you'd add the following:
+    ```yml
+    github:
+      zip_url: http://example.com/download.zip
+      another_url: another value
+    ```
+3. When your site is built, Jekyll will use the URL you specified, rather than the default one provided by GitHub.
 
-### Assets
+*Note: You must remove the `site.` prefix, and each variable name (after the `github.`) should be indent with two space below `github:`.*
 
-* `assets/css/style.css` - Imports `_sass/leaf.scss`.
-* `assets/default-icon.png` - The leaf icon.
+For more information, see [the Jekyll variables documentation](https://jekyllrb.com/docs/variables/).
 
-### Plugins
+## Roadmap
 
-Leaf Jekyll theme uses two plugins by default.
+See the [open issues](https://github.com/pages-themes/hacker/issues) for a list of proposed features (and known issues).
 
-* `jekyll-seo-tag` - For better SEO
-* `jekyll-feed` - For RSS feed
+## Project philosophy
 
-## Configuration
-
-Here's the basic `_config.yml` file of this plugin.
-
-```yaml
-title: Leaf Blog
-iconURL: assets/default-icon.png
-theme: jekyll-theme-leaf
-
-permalink: :slug
-
-social:
-  twitter: YOUR_TWITTER
-  github: YOUR_GITHUB
-
-plugins:
- - jekyll-feed
- - jekyll-seo-tag
-
-### comments & analytics
-hyvor_talk_website_id: YOUR_WEBSITE_ID
-google_analytics: UA-NNNNNNNN-N
-```
-
-### Adding Comments
-
-The Leaf Jekyll theme uses [Hyvor Talk](https://talk.hyvor.com) comments. The colors are customized based for the theme therefore you don't need to customize colors in the console.
-
-* First, [login to the Hyvor Talk console](https://talk.hyvor.com/console)
-* Register your website
-* Get your website ID from the **General** section of the console.
-* Then, replace `YOUR_WEBSITE_ID` in the above code in `_config.yml` with your code.
-
-Ex: 
-
-```yaml
-hyvor_talk_website_id: 14
-```
-
-### Adding Google Analytics
-
-* Sign up to [Google Analytics](https://analytics.google.com)
-* Add your website and get the tracking ID.
-* Replace `UA-NNNNNNNN-N` with your tracking ID.
-
-Google Analytics will only appear in production.
+The Hacker theme is intended to make it quick and easy for GitHub Pages users to create their first (or 100th) website. The theme should meet the vast majority of users' needs out of the box, erring on the side of simplicity rather than flexibility, and provide users the opportunity to opt-in to additional complexity if they have specific needs or wish to further customize their experience (such as adding custom CSS or modifying the default layout). It should also look great, but that goes without saying.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/SupunKavinda/jekyll-theme-leaf. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Interested in contributing to Hacker? We'd love your help. Hacker is an open source project, built one contribution at a time by users like you. See [the CONTRIBUTING file](docs/CONTRIBUTING.md) for instructions on how to contribute.
 
-## Development
+### Previewing the theme locally
 
-To set up your environment to develop this theme, run `bundle install`.
+If you'd like to preview the theme locally (for example, in the process of proposing a change):
 
-Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
+1. Clone down the theme's repository (`git clone https://github.com/pages-themes/hacker`)
+2. `cd` into the theme's directory
+3. Run `script/bootstrap` to install the necessary dependencies
+4. Run `bundle exec jekyll serve` to start the preview server
+5. Visit [`localhost:4000`](http://localhost:4000) in your browser to preview the theme
 
-When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
-To add a custom directory to your theme-gem, please edit the regexp in `leaf.gemspec` accordingly.
+### Running tests
 
-## License
-
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
+The theme contains a minimal test suite, to ensure a site with the theme would build successfully. To run the tests, simply run `script/cibuild`. You'll need to run `script/bootstrap` once before the test script will work.
